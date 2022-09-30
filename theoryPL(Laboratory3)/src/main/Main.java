@@ -31,11 +31,11 @@ public class Main
 		for (String a : inputSplit)
 		{
 		
-			if(a.charAt(0) ==('\"'))
+			if(a.charAt(0) ==('\"') || a.charAt(0) ==('\''))
 			{
 				qoute += a;
 			}
-			else if(a.charAt(a.length()-1) == '\"')
+			else if(a.charAt(a.length()-1) == '\"'|| a.charAt(a.length()-1) ==('\''))
 			{
 				qoute += a;
 				stringList.add(qoute);
@@ -56,7 +56,7 @@ public class Main
 			{
 				System.out.print("<assignment_operator>");
 			}
-			else if(a.contains("\""))
+			else if(a.contains("\"")||a.contains("\'"))
 			{
 				System.out.print("<value>");
 			}
