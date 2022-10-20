@@ -26,6 +26,7 @@ public class Main
 		
 		List <String> stringList= new ArrayList<String>();
 		String qoute = "";
+		String lexemesOutput = "";
 		int num = 0;
 		
 		for (String a : inputSplit)
@@ -50,26 +51,27 @@ public class Main
 		{
 			if(a.equals("int")|| a.equals("double")|| a.equals("String")||a.equals("char"))
 			{
-				System.out.print("<data_type>");
+				lexemesOutput +="<data_type>";
 			}
 			else if(a.equals("="))
 			{
-				System.out.print("<assignment_operator>");
+				lexemesOutput +="<assignment_operator>";
 			}
 			else if(a.contains("\"")||a.contains("\'"))
 			{
-				System.out.print("<value>");
+				lexemesOutput +="<value>";
 			}
 			else if(a.equals(";"))
 			{
-				System.out.print("<delimiter>");
+				lexemesOutput += "<delimiter>";
 			}
 			else
 			{
-				System.out.print("<identifier>");
+				lexemesOutput +="<identifier>";
 			}
 		}
 		
+		System.out.println(lexemesOutput);
 			
 		
 	}
