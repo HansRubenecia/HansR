@@ -83,8 +83,6 @@ public class Main
 				
 			}
 		}
-		
-		String LexemesOutput = "";
 		for(String a : tokenList)
 		{
 			System.out.print(a + " ");
