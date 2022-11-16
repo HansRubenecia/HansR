@@ -90,7 +90,7 @@ public class Main
 			System.out.print(a + " ");
 		}
 		
-		
+		 
 	}
 }
 		
