@@ -26,7 +26,7 @@ public class Main
 		
 		List <String> stringList= new ArrayList<String>();
 		String qoute = "";
-		String lexemesOutput = "";
+		String token = "";
 		int num = 0;
 		
 		for (String a : inputSplit)
@@ -46,41 +46,53 @@ public class Main
 				stringList.add(a);
 			}
 		}
-		
+		ArrayList<String> tokenList= new ArrayList<String>();
 		for(String a : stringList) 
 		{
 			if(a.equals("int")|| a.equals("double")|| a.equals("String")||a.equals("char"))
 			{
-				lexemesOutput +="<data_type>";
+				token ="<data_type>";
+				tokenList.add(token);
 			}
 			else if(a.equals("="))
 			{
-				lexemesOutput +="<assignment_operator>";
+				token ="<assignment_operator>";
+				tokenList.add(token);
 			}
 			else if(a.contains("\"")||a.contains("\'"))
 			{
-				lexemesOutput +="<value>";
+				token ="<value>";
+				tokenList.add(token);
 			}
 			else if(a.equals(";"))
 			{
-				lexemesOutput += "<delimiter>";
+				token = "<delimiter>";
+				tokenList.add(token);
 			}
 			else
 			{
-				lexemesOutput +="<identifier>";
+				if(token =="<identifier>")
+				{
+					token ="<identifier>";
+				}
+				else
+				{
+					token ="<identifier>";
+					tokenList.add(token);	
+				}
+				
 			}
 		}
 		
-		System.out.println(lexemesOutput);
-			
+		String LexemesOutput = "";
+		for(String a : tokenList)
+		{
+			System.out.print(a + " ");
+		}
+		
 		
 	}
-		
-	
-		
-		
 }
-
 		
 	
 
