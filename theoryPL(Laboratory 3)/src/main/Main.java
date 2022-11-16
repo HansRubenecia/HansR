@@ -71,9 +71,13 @@ public class Main
 			}
 			else
 			{
-				if(token =="<identifier>")
+				if(token =="<assignment_operator>")
 				{
-					token ="<identifier>";
+					token ="<value>";
+				}
+				else if(token == "<value>")
+				{
+					token ="<value>";
 				}
 				else
 				{
