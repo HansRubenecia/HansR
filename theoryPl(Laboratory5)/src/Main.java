@@ -1,64 +1,37 @@
 import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class Main {
+    public static void main(String[] args) {
+        System.out.print("Enter Expression: ");
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
 
-	public static void main(String[] args) 
-	{
-		
-		System.out.print("Enter Expression: ");
-		Scanner sc = new Scanner(System.in);
-		String input = sc.nextLine();
-		Lex lex =new Lex();
-		lex.Analysis(input);
-		
-		String value = lex.getValue();
-		System.out.println(value);
-		String dataType = lex.getDataType();
-		
-			if(value == null)
-			{
-				System.out.println("Semantically Correct!");
-			}
-			else if(dataType.equals(value))
-			{
-				System.out.println("Semantically Correct!");
-			}
-			else if(dataType.equals("int") && (Long.parseLong(value) >= -Integer.MIN_VALUE && Long.parseLong(value)<= Integer.MAX_VALUE ))
-			{
-				System.out.println("Semantically Correct!");
-			}
-			else if(dataType.equals("long") && (Long.parseLong(value) >= Long.MIN_VALUE && Long.parseLong(value) <= Long.MAX_VALUE ))
-			{
-				System.out.println("Semantically Correct!");
-			}
-			else if(dataType.equals("float") && (Long.parseLong(value) >= Float.MIN_VALUE && Long.parseLong(value) <= Float.MAX_VALUE))
-			{
-				System.out.println("Semantically Correct!");
-			}
-			else if(dataType.equals("double") && (Double.parseDouble(value) >= Double.MIN_VALUE && Double.parseDouble(value) <= Double.MAX_VALUE))
-			{
-				System.out.println("Semantically Correct!");
-			}
-			else if(dataType.equals("byte") && (Byte.parseByte(value) >= Byte.MIN_VALUE && Byte.parseByte(value) <= Byte.MAX_VALUE))
-			{
-				System.out.println("Semantically Correct!");
-			}
-			else if(dataType.equals("short") && (Short.parseShort(value) >= Short.MIN_VALUE && Short.parseShort(value) <= Short.MAX_VALUE))
-			{
-				System.out.println("Semantically Correct!");
-			}
-			else 
-			{
-				System.out.println("Semantically Incorrect!");
-			}
-			/* test input
-			 1) int x = 1;
-			 2) String str = "Hello World";
-			 3) double number;
-			 */
+        // Check for the presence of a semicolon at the end
+        if (input.matches(".+;\\s*$")) {
+            // Split the input by semicolons to separate statements
+            String[] statements = input.split(";");
 
-		
+            for (String statement : statements) {
+                // Remove leading and trailing whitespace
+                statement = statement.trim();
 
-	}
+                if (isValidDeclaration(statement)) {
+                    System.out.println("Semantically Correct: " + statement);
+                } else {
+                    System.out.println("Semantically Incorrect: " + statement);
+                }
+            }
+        } else {
+            System.out.println("Invalid statement: Missing or misplaced semicolon");
+        }
+    }
 
+    // Perform a basic semantic check for variable declaration
+    public static boolean isValidDeclaration(String statement) {
+        // Use a regular expression to match valid variable declarations like "int x;"
+        String pattern = "^(int|String|float|char|long|byte|boolean|double)\\s+[a-zA-Z_][a-zA-Z0-9_]*;$";
+        return Pattern.matches(pattern, statement);
+    }
 }
